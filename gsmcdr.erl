@@ -33,12 +33,12 @@ process(Rec, Out)  ->
 	"0021" -> cdrStrip(locationServices, Rec, ModuleFlag, 332, false, Out)
     end.
 
-cdrStrip(Type, Record, ModuleFlag, Length, Output, Out) -> 
+cdrStrip(_Type, Record, ModuleFlag, Length, Output, Out) -> 
     case ModuleFlag of 
 	false -> CDR = Record, Modules = [];
 	true  -> {CDR, Modules} = lists:split(Length,Record)
     end,
-    Mods = parse_modules(Modules),
+    _Mods = parse_modules(Modules),
     if Output == true -> io:format(Out,"~s~n",[CDR]);
        true -> []
     end. 
